@@ -118,7 +118,7 @@ Class Upload_File
                             $secu = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http"); // check if the server is http or https
 
                             // redirect to index and giving to user a link to downlaod his file (fully securised against php defacer, js, ...)
-                            header('Location: index.php?success= Upload successfull ! Download link : <input type="text" value="' . $secu . '://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['SCRIPT_NAME']) . '/download.php?dll=' . $c_dir . '/' . $_FILES["uploaded_file"]["name"] . '">');  
+                            header('Location: index.php?success='. $secu . '://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['SCRIPT_NAME']) . '/download.php?dll=' . $c_dir . '/' . $_FILES["uploaded_file"]["name"]);  
                         }
                         else { s_error("You can't upload a file who's size is more then 20mb."); }  
                     }

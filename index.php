@@ -65,7 +65,7 @@
 							<button type="button" class="close" data-dismiss="alert" aria-hidden="true">
 								×
 							</button>
-							<strong>Warning !</strong> ' . $_GET['success'] . '
+							<strong>Warning !</strong> Upload successfull ! Download link : <input type="text" value="' . strip_tags($_GET['success']) . '">
 						</div>'; 
 						}
 				?>

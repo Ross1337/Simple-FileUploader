@@ -1,6 +1,6 @@
 <?php
 
-if(isset($_GET['dll']) && !empty($_GET['dll']) && is_string($_GET['error']))
+if(isset($_GET['dll']) && !empty($_GET['dll']))
 {
     if(file_exists('upld/' . strip_tags($_GET['dll'])))
     {
