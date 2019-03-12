@@ -1,6 +1,6 @@
 <?php
 
-if(isset($_GET['dll']) && !empty($_GET['dll']))
+if(isset($_GET['dll']) && !empty($_GET['dll']) && is_string($_GET['error']))
 {
     if(file_exists('upld/' . strip_tags($_GET['dll'])))
     {
@@ -11,7 +11,7 @@ if(isset($_GET['dll']) && !empty($_GET['dll']))
         header("Content-Description: File Transfer"); 
         header("Content-Type: " . finfo_file($finfo, 'upld/' . $_GET['dll']));
         header("Content-disposition: attachment; filename=\"" . basename('upld/' . $_GET['dll']) . "\""); 
-        readfile('upld/' . $_GET['dll']; // do the double-download-dance (dirty but worky)
+        readfile('upld/' . $_GET['dll']); // do the double-download-dance (dirty but worky)
     }
     else { header('Location: index.php?error=Download error : Bad file name or not found.'); }
 }

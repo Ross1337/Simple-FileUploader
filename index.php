@@ -46,7 +46,7 @@
 		
 			<?php
 						// display alert error
-            if(isset($_GET['error']) && !empty($_GET['error']))
+            if(isset($_GET['error']) && !empty($_GET['error']) && is_string($_GET['error']))
 						{ 
 							echo '
 							<div class="alert alert-danger alert-dismissable">
@@ -58,7 +58,7 @@
 						}
 
 						// display succes alert
-						if(isset($_GET['success']) && !empty($_GET['success']))
+						if(isset($_GET['success']) && !empty($_GET['success']) && is_string($_GET['success']))
 						{ 
 							echo '
 							<div class="alert alert-success alert-dismissable">
