@@ -1,5 +1,7 @@
 <?php
 
+include_once('aes.php');
+
 if($_SERVER['REQUEST_METHOD'] != 'POST')
 { header('Location: index.php'); die(); }
 
@@ -118,7 +120,12 @@ $c_dir = create_n_dir(); // create the directory where the file is gonna be move
 move_uploaded_file($_FILES["uploaded_file"]["tmp_name"], "upld/" . $c_dir . "/" . $_FILES["uploaded_file"]["name"]); // move the file
 $secu = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http"); // check if the server is http or https
 
+// encrypt the dll directory
+echo $encrypted_directory = AES::encrypt($c_dir . '/' . $_FILES["uploaded_file"]["name"], 'upld/encryption/key.ini');
+
 // redirect to index and giving to user a link to downlaod his file (fully securised against php defacer, js, ...)
-header('Location: index.php?success='. $secu . '://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['SCRIPT_NAME']) . '/download.php?dll=' . $c_dir . '/' . $_FILES["uploaded_file"]["name"]);  
+
+$dll_link = $secu . '://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['SCRIPT_NAME']) . '/download.php?dll=|' . base64_encode($encrypted_directory) . '|' . strip_tags($_FILES["uploaded_file"]["name"] . '|');
+header('Location: index.php?success=' . $dll_link);  
                         
 ?>
