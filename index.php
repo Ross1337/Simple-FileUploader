@@ -26,7 +26,7 @@
 					<div class="col-md-4 col-md-offset-2">
               <div class="alert alert-warning alert-dismissable">
 									<strong>Total files uploaded : </strong> 
-									<?php echo count(glob('upld/*')); ?> <!-- Here is use glob to know how many directories is there in the dir and count them-->
+									<?php echo count(glob('upld/*')) - 1; ?> <!-- Here is use glob to know how many directories is there in the dir and count them-->
               </div>
           </div>
       </div>
