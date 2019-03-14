@@ -31,7 +31,7 @@ Class Upload_File
         if($_FILES['uploaded_file']['error'] == 0)
         { return 1; }
         else
-        { return 1; }
+        { return 0; }
     }
 
     public static function check_file_content_type()
