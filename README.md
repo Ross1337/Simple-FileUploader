@@ -5,6 +5,10 @@ I made this FileUploader in php and using bootstrap for frontend. It take's me f
 
 ![image](https://user-images.githubusercontent.com/45340378/54077342-2e9cff00-42b7-11e9-85c0-96c795de592f.png)
 
+## Encryption AES256 :
+
+The website is encrypting the directory file using a **unique key** generate when your loading the index page for the first time. **Do NEVER** change your key you will break the system, or if you want to reset your key, delete the key between the **" "** in [key.ini](upld/encryption/key.ini) and **let it empty**, it will generate a new key. If your changing your encryption key, the old download links will not work : ( **the old links encrypted using the old key, the new key will not be able to decrypt it** ).
+
 ## How did i securised the website against php deface :
 
 1 - I'm scanning mime type of files using php functions and if the mime type is blacklisted, the upload will not happen.
