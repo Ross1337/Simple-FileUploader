@@ -100,3 +100,45 @@
     <script src="js/scripts.js"></script>
   </body>
 </html>
+
+<?php
+
+$parse_key = parse_ini_file('upld/encryption/key.ini'); 
+
+if(empty($parse_key['encryption_key']))
+{
+		function generateRandomString($length = 10, $seeds = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234567890123456789')
+				{
+						$str = '';
+						$seedsCount = strlen($seeds);
+						list($usec, $sec) = explode(' ', microtime());
+						$seed = (float) $sec + ((float) $usec * 100000);
+						mt_srand($seed);
+						for ($i = 0; $length > $i; $i++) {
+								$str .= $seeds{mt_rand(0, $seedsCount - 1)};
+						}
+						return $str;
+				}
+		
+		function set_encryption_key()
+				{
+						$begin    = '----- BEGIN ENCRYPTION KEY ----- ';
+						$end      = ' ----- END ENCRYPTION KEY -----';
+						$salt1 = generateRandomString(100);
+						$salt2 = generateRandomString(100);
+						$key = generateRandomString(100);
+						$key = $begin . $salt1 . '.' . $key . '.' . $salt2 . $end;
+						$key = base64_encode($key);
+
+						$set_e_k = fopen('upld/encryption/key.ini', 'w');
+
+						fputs($set_e_k, '[encryption_key]' . "\r\n");
+						fputs($set_e_k, 'encryption_key = "' . $key . "\"");
+
+						fclose($set_e_k);
+				}
+
+		set_encryption_key();
+}
+
+?>
