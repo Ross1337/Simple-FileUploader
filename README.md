@@ -9,7 +9,7 @@ I made this FileUploader in php and using bootstrap for frontend. It take's me f
 
 You can see your last uploaded files in the bottom of the page, the logs are in your web session, so only your computer will see your last uploads. If you want to clean your upload logs just clean your cookies from the website.
 
-![image](https://user-images.githubusercontent.com/45340378/54475545-aa84d300-47f2-11e9-8844-b2b6439fd759.png)
+![image](https://user-images.githubusercontent.com/45340378/54475597-3139b000-47f3-11e9-8721-dad86e10ed14.png)
 
 As you can see, there is your last uploaded files, if you click on it it will redirect you to the download link. It's really practical.
 
