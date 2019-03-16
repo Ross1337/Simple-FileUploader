@@ -3,7 +3,15 @@ I made this FileUploader in php and using bootstrap for frontend. It take's me f
 
 ## How it looks like :
 
-![image](https://user-images.githubusercontent.com/45340378/54077342-2e9cff00-42b7-11e9-85c0-96c795de592f.png)
+![image](https://user-images.githubusercontent.com/45340378/54475564-eae45100-47f2-11e9-8069-3edbf40eedc6.png)
+
+## Upload logs :
+
+You can see your last uploaded files in the bottom of the page, the logs are in your web session, so only your computer will see your last uploads. If you want to clean your upload logs just clean your cookies from the website.
+
+![image](https://user-images.githubusercontent.com/45340378/54475545-aa84d300-47f2-11e9-8844-b2b6439fd759.png)
+
+As you can see, there is your last uploaded files, if you click on it it will redirect you to the download link. It's really practical.
 
 ## Encryption AES256 :
 
