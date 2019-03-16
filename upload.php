@@ -1,5 +1,6 @@
 <?php
 
+session_start();
 include_once('aes.php');
 
 if($_SERVER['REQUEST_METHOD'] != 'POST')
@@ -89,6 +90,43 @@ function create_n_dir()
         return $dirname;
     }
 
+function log_upload($link)
+    {
+        // if never files uploaded, set total upload to 0
+        if(!isset($_SESSION['total_upload']) || empty($_SESSION['total_upload']) || $_SESSION['total_upload'] == 0)
+        { $_SESSION['total_upload'] = 0; }
+
+        for($z = 2; $z  >= 0; $z--)
+        {
+            // if there is not 3 last uploads do that
+            if(!isset($_SESSION['upload'][$z]) || empty($_SESSION['upload'][$z]))
+            {
+                $_SESSION['upload'][$z]['name'] = strip_tags($_FILES['uploaded_file']['name']);
+                $_SESSION['upload'][$z]['date'] = date('Y/m/d H:i:s');
+                $_SESSION['upload'][$z]['link'] = $link;
+                $_SESSION['last_set'] = $z;        
+                break;
+            }
+            // else do that
+            else if($_SESSION['last_set'] == 0)
+            {
+                $_SESSION['upload'][2]['name'] = $_SESSION['upload'][1]['name'];
+                $_SESSION['upload'][1]['name'] = $_SESSION['upload'][0]['name'];
+                $_SESSION['upload'][0]['name'] = strip_tags($_FILES['uploaded_file']['name']);
+
+                $_SESSION['upload'][2]['date'] = $_SESSION['upload'][1]['date'];
+                $_SESSION['upload'][1]['date'] = $_SESSION['upload'][0]['date'];
+                $_SESSION['upload'][0]['date'] = date('Y/m/d H:i:s');
+
+                $_SESSION['upload'][2]['link'] = $_SESSION['upload'][1]['link'];
+                $_SESSION['upload'][1]['link'] = $_SESSION['upload'][0]['link'];
+                $_SESSION['upload'][0]['link'] = $link;
+                $_SESSION['last_set'] = 0;
+                break;
+            }
+        }
+    }
+
 // check if the file has been uploaded
 if(!isset($_FILES['uploaded_file']))
 { s_error("Retry to upload your file please."); exit(); }
@@ -127,5 +165,7 @@ echo $encrypted_directory = AES::encrypt($c_dir . '/' . $_FILES["uploaded_file"]
 
 $dll_link = $secu . '://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['SCRIPT_NAME']) . '/download.php?dll=|' . base64_encode($encrypted_directory) . '|' . strip_tags($_FILES["uploaded_file"]["name"] . '|');
 header('Location: index.php?success=' . $dll_link);  
-                        
+
+// log the uploaded file
+log_upload($dll_link);
 ?>

@@ -95,6 +95,58 @@
 	</div>
 </div>
 
+<br>
+<div class="row">
+		<div class="col-md-4"></div>
+		<div class="col-md-4 col-md-offset-2">
+			<h3>
+						Your 3 last uploads.
+			</h3>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>
+							Name
+						</th>
+						<th>
+							Link ( click on it )
+						</th>
+						<th>
+							Date
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php
+
+						session_start();
+
+						for($y = 0; $y < 3; $y++)
+						{
+							if(isset($_SESSION['upload'][$y]))
+							{
+								
+									echo '
+								<tr>
+									<td>
+										' . htmlspecialchars(strip_tags($_SESSION['upload'][$y]['name'])) . '
+									</td>
+									<td>
+										<a href="' . htmlspecialchars($_SESSION['upload'][$y]['link']) . '">' . htmlspecialchars(strip_tags($_SESSION['upload'][$y]['name'])) . '</a>
+									<td>
+									' . htmlspecialchars($_SESSION['upload'][$y]['date']) . '
+									</td>
+								</tr>
+								';
+							}
+						}
+
+					?>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/scripts.js"></script>
