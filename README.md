@@ -1,4 +1,4 @@
-# FileUploader, Simple & Securised (against php deface).
+# Simple FileUploader.
 I made this FileUploader in php and using bootstrap for frontend. It take's me few hours, I'll maybe made updates soon, make an issue if you want me to add something. You just need to clone the repo and you can use it, he's fully responsive so if your on phone you can also use it. Don't hesitate to star this repo !
 
 ## How it looks like :
