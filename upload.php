@@ -171,7 +171,7 @@ move_uploaded_file($_FILES["uploaded_file"]["tmp_name"], "upld/" . $c_dir . "/" 
 $secu = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http"); // check if the server is http or https
 
 // encrypt the dll directory
-echo $encrypted_directory = AES::encrypt($c_dir . '/' . $_FILES["uploaded_file"]["name"], 'upld/encryption/key.ini');
+$encrypted_directory = AES::encrypt($c_dir . '/' . $_FILES["uploaded_file"]["name"], 'upld/encryption/key.ini');
 
 // redirect to index and giving to user a link to downlaod his file (fully securised against php defacer, js, ...)
 
